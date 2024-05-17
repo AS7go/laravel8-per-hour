@@ -23,4 +23,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [BlogController::class, 'index']);
-// Route::get('/', [BlogController::class, 'index'])->name('');
+Route::get('/category/{slug}', [BlogController::class, 'getPostsByCategory'])->name('getPostsByCategory');
