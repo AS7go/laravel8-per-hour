@@ -25,7 +25,7 @@
         </div>
     @endforeach
 
-    {{$posts->links()}}
+    {{$posts->links('vendor.pagination.bootstrap-4')}}
 
     {{-- <nav aria-label="Page navigation example">
         <ul class="pagination">
