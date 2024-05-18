@@ -25,11 +25,22 @@ class BlogController extends Controller
         $currentCategory=Category::where('slug',$slug)->first();
 
         return view('pages.index', [
-            'posts'=>$currentCategory->posts, // можем передать posts т.к. метод в Category.php называется posts
+            'posts'=>$currentCategory->posts()->paginate(2), // можем передать posts т.к. метод в Category.php называется posts
             //мы получим посты конкретной категории
             'categories'=>$categories,
             'currentCategoryNameBlog' => $currentCategory, // Передаем текущую категорию
             
+        ]);
+    }
+
+    public function getPost($slug_category, $slug_post){
+        $post=Post::where('slug',$slug_post)->first();
+        $categories=Category::orderBy('title')->get();
+
+        return view('pages.show-post',[
+            'post'=>$post,
+            'categories'=>$categories,
+            'slug_category'=>$slug_category,
         ]);
     }
 }
